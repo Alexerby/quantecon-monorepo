@@ -1,0 +1,18 @@
+# Use a white/minimal background
+figure.facecolor: fafafa
+axes.facecolor: fafafa
+axes.edgecolor: 333333
+axes.grid: True
+grid.color: e9ecef
+
+# Typography (Matches your site)
+font.family: monospace
+axes.titlesize: 14
+axes.titleweight: bold
+axes.labelsize: 10
+
+# Colors (Minimalist Blue & Grayscale)
+# 0d6efd is your Bootstrap Primary, 6c757d is Bootstrap Secondary
+axes.prop_cycle: cycler('color', ['0d6efd', '6c757d', 'adb5bd', '212529'])
+lines.linewidth: 2
+patch.edgecolor: fafafa
