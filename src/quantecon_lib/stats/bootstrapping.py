@@ -12,7 +12,7 @@ def bootstrap(data, estimator, B=5000):
     n = len(data)
     boot_estimates = []
 
-    for i in range(B):
+    for _ in range(B):
         # 1. Resample with replacement
         resample = np.random.choice(data, size=n, replace=True)
         
