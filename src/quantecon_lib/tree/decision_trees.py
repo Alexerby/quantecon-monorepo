@@ -1,4 +1,6 @@
+from typing import Optional
 import numpy as np
+
 
 class Node:
     def __init__(self, feature=None, threshold=None, left=None, right=None, value=None):
@@ -10,8 +12,9 @@ class Node:
 
 
 class BaseDecisionTree:
-    def __init__(self, max_depth=3):
+    def __init__(self, max_depth: Optional[int]=None, max_features=None):
         self.max_depth = max_depth
+        self.max_features = max_features
         self.root = None
     
     def fit(self, X, y):
@@ -24,7 +27,7 @@ class BaseDecisionTree:
 
     def predict(self, X):
         # For each vector \vec{x} \in \mathbf{X}
-        return np.array([self._traverse(x, self.root) for x in X.values]) 
+        return np.array([self._traverse(x, self.root) for x in X]) 
 
     def _grow_tree(self, X, y, depth=0):
         """For fitting the tree."""
@@ -32,7 +35,10 @@ class BaseDecisionTree:
         n_labels = len(np.unique(y))
 
         # STOPPING CONDITION: This is what kills the recursion
-        if (depth >= self.max_depth or n_labels <= 1 or n_samples < 2):
+        if (
+            (self.max_depth is not None and depth >= self.max_depth) or 
+            n_labels <= 1 or n_samples < 2
+        ):
             return Node(value=self._calculate_leaf_value(y))
 
         split = self._find_best_split(X, y)
@@ -92,8 +98,23 @@ class BaseDecisionTree:
         # If there are fewer than 2 unique values in X, we can't split
         if X.shape[0] < 2:
             return None
+
+        n_features = X.shape[1]
+
+        if self.max_features is None: # Standard bagging
+            feature_indices = np.arange(n_features)
+
+        else: #random forest (pick m features at random for this split)
+            num_to_sample = min(n_features, self.max_features)
+            feature_indices = np.random.choice(
+                np.arange(n_features),
+                size=num_to_sample,
+                replace=False
+            )
+
+
         
-        for feature_idx in range(X.shape[1]):
+        for feature_idx in feature_indices:
 
             # Get unique values of the feature
             unique_vals = np.unique(X[:, feature_idx]) 
