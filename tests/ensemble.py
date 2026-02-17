@@ -1,8 +1,8 @@
 import numpy as np
 from sklearn.datasets import make_moons
-from quantecon_lib.ensemble.forest import RandomForestClassifier
-from quantecon_lib.ensemble.boosting import GradientBoostingRegressor
-from quantecon_lib.ensemble.bagging import BaggingRegressor
+from quantecon_lib.ensemble import RandomForestClassifier
+from quantecon_lib.ensemble import GradientBoostingRegressor
+from quantecon_lib.ensemble import BaggingRegressor
 
 # Test A: Random Forest Classifier
 X_c, y_c = make_moons(n_samples=100, noise=0.1)
