@@ -3,7 +3,6 @@ import numpy as np
 class BaseBasisModel:
     def __init__(self):
         self.beta = None
-        self.knots = None
 
     def _validate_data(self, X, y=None):
         X = np.asarray(X)
@@ -28,7 +27,3 @@ class BaseBasisModel:
     def _transform(self, X):
         raise NotImplementedError("Subclasses must implement _transform")
 
-
-def get_quantile_knots(X, n_knots):
-    quantiles = np.linspace(0, 100, n_knots + 2)[1:-1]
-    return np.percentile(X, quantiles)
