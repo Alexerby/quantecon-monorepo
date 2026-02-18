@@ -10,6 +10,7 @@ This repository contains from-scratch implementations of core machine learning a
 | :--- | :--- | :---: | :--- |
 | **Linear Spline** | Truncated Power Basis: $(x-\xi)_+$ | ✅ | `basis_models/splines.py` |
 | **Cubic Spline** | $C^2$ Continuity & Smoothness | ✅ | `basis_models/splines.py` |
+| **Smoothing Spline** | Interpolation | ✅ | `basis_models/splines.py` |
 | **Natural Spline** | Boundary constraints (Linear at edges) | 🏗️ | |
 | **B-splines** | Local support & Numerical stability | ⬜ | |
 | **GAMs** | Additive components: $\sum f_j(x_j)$ | ⬜ | |
