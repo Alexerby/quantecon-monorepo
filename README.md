@@ -1,9 +1,4 @@
-# QuantEcon Lab
-
-This repo houses the `quantecon_lib` source code and replication scripts for my blog posts at [alexandereriksson.se](https://alexandereriksson.se/blog/).
-
 # Quantitative Economics & ML Implementation Lab 2026
-
 This repository contains from-scratch implementations of core machine learning algorithms, developed as part of a systematic study of statistical learning and optimization.
 
 ## 🛠 Progress Tracker
@@ -24,7 +19,7 @@ This repository contains from-scratch implementations of core machine learning a
 
 | Topic | Key Math / Concept | Status | Implementation |
 | :--- | :--- | :---: | :--- |
-| **Decision Trees** | Gini Impurity / Information Gain | ✅ | `ensembles/trees.py` |
+| **Decision Trees** | Gini Impurity / Information Gain | ✅ | `tree/decision_trees.py` |
 | **Bagging** | Variance reduction / Bootstrapping | ✅ | `ensembles/bagging.py` |
 | **AdaBoost** | Weighted Error Minimization | ✅ | `ensembles/adaboost.py` |
 | **Gradient Boosting**| Residual fitting via Gradient Descent | ✅ | `ensembles/gbm.py` |

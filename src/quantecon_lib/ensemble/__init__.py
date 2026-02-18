@@ -1,10 +1,11 @@
-from quantecon_lib.ensemble.forest import RandomForestClassifier
-from quantecon_lib.ensemble.boosting import GradientBoostingRegressor, AdaBoostClassifier
 from quantecon_lib.ensemble.bagging import BaggingRegressor
+from quantecon_lib.ensemble.adaboost import AdaBoostClassifier
+from quantecon_lib.ensemble.gbm import GradientBoostingRegressor
+from quantecon_lib.ensemble.forest import RandomForestClassifier
 
 __all__ = [
+    "BaggingRegressor",
     "AdaBoostClassifier",
     "GradientBoostingRegressor",
-    "BaggingRegressor",
     "RandomForestClassifier",
 ]
