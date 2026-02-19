@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 # Get path to your .mplstyle relative to the library root
-STYLE_PATH = os.path.join(os.path.dirname(__file__), "../styles/sleak.mplstyles")
+STYLE_PATH = os.path.join(os.path.dirname(__file__), "../../../styles/sleak.mplstyles")
 
 def use_quantecon_style():
     """Apply the library's custom matplotlib style."""

@@ -7,14 +7,14 @@ class GradientBoostingRegressor(BaseEnsemble):
         super().__init__(n_estimators=n_estimators, max_depth=max_depth)
         self.learning_rate = learning_rate
         self.f0 = None
-        self.history_ = None
+        self._history = None
 
     def _fit(self, X, y, eval_set=None, patience=10, tol=1e-4):
         self.f0 = np.mean(y)
         current_preds = np.full(len(y), self.f0)
         self.models = []
         
-        self.history_ = {'train_loss': []}
+        self._history = {"train_loss": []}
 
         if eval_set:
             X_val, y_val = eval_set
@@ -22,8 +22,8 @@ class GradientBoostingRegressor(BaseEnsemble):
             best_val_loss = np.inf
             no_improvement_count = 0
             
-            self.history_['val_loss'] = []
-            self.history_['val_r2'] = []
+            self._history["val_loss"] = []
+            self._history["val_r2"] = []
             
             y_val_mean = np.mean(y_val)
             ss_tot_val = np.sum((y_val - y_val_mean)**2)
@@ -38,16 +38,16 @@ class GradientBoostingRegressor(BaseEnsemble):
             self.models.append(tree)
 
             train_loss = np.mean((y - current_preds)**2)
-            self.history_['train_loss'].append(train_loss)
+            self._history["train_loss"].append(train_loss)
 
             if eval_set:
                 val_preds += self.learning_rate * tree.predict(X_val)
                 current_val_loss = np.mean((y_val - val_preds)**2)
-                self.history_['val_loss'].append(current_val_loss)
+                self._history["val_loss"].append(current_val_loss)
 
                 ss_res_val = np.sum((y_val - val_preds)**2)
                 current_score = 1 - (ss_res_val / ss_tot_val)
-                self.history_["val_r2"].append(current_score)
+                self._history["val_r2"].append(current_score)
 
                 if current_val_loss < best_val_loss - tol:
                     best_val_loss = current_val_loss

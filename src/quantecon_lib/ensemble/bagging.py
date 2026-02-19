@@ -1,3 +1,7 @@
+"""
+TODO: BaggingClassifier
+"""
+
 import numpy as np
 from ._base import ParallelEnsemble
 from ..tree.decision_trees import DecisionTreeRegressor

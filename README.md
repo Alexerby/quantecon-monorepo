@@ -57,4 +57,4 @@ This repository contains from-scratch implementations of core machine learning a
 | **Hierarchical** | Linkage types (Ward/Complete) | ⬜ | |
 | **PCA** | Eigenvalues / Variance Maximization | ⬜ | |
 | **t-SNE** | KL-Divergence / Manifold mapping | ⬜ | |
-| **Autoencoders** | Bottleneck Reconstruction Loss | ⬜ | |
+| **Autoencoders** | Bottleneck Reconstruction Loss | ✅ | `nn/models/feed_forward.py` |
