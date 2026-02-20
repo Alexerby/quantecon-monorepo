@@ -59,7 +59,7 @@ class GradientBoostingRegressor(BaseEnsemble):
                 if no_improvement_count >= patience:
                     break
 
-            return self
+        return self
 
     def predict(self, X):
         X = np.asarray(X)
