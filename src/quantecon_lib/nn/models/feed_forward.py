@@ -3,10 +3,19 @@ from .._base import BaseNeuralNetwork
 
 from quantecon_lib.core.utils import timer
 
-class FeedForwardNetwork(BaseNeuralNetwork):
 
+class FeedForwardNetwork(BaseNeuralNetwork):
     @timer
-    def train(self, x_train, y_train, x_test, y_test, epochs: int, batch_size: int = 32, tol: float = 1e-6):
+    def train(
+        self,
+        x_train,
+        y_train,
+        x_test,
+        y_test,
+        epochs: int,
+        batch_size: int = 32,
+        tol: float = 1e-6,
+    ):
         prev_test_loss: float = float("inf")
         n_samples = x_train.shape[0]
 
@@ -16,8 +25,8 @@ class FeedForwardNetwork(BaseNeuralNetwork):
             y_shuffled = y_train[indices]
 
             for i in range(0, n_samples, batch_size):
-                x_batch = x_shuffled[i:i + batch_size]
-                y_batch = y_shuffled[i:i + batch_size]
+                x_batch = x_shuffled[i : i + batch_size]
+                y_batch = y_shuffled[i : i + batch_size]
 
                 H = x_batch
                 for layer in self.layers:
@@ -38,7 +47,9 @@ class FeedForwardNetwork(BaseNeuralNetwork):
             loss_test_val = self._loss_function.forward(y_test, test_preds)
 
             if loss_train_val is None or loss_test_val is None:
-                raise ValueError("Loss function returned None instead of a scalar value.")
+                raise ValueError(
+                    "Loss function returned None instead of a scalar value."
+                )
 
             current_loss_train = float(loss_train_val)
             current_loss_test = float(loss_test_val)
@@ -49,8 +60,10 @@ class FeedForwardNetwork(BaseNeuralNetwork):
             if abs(prev_test_loss - current_loss_test) <= tol:
                 print(f"Converged at epoch {epoch}.")
                 break
-            
+
             prev_test_loss = current_loss_test
-            
+
             if epoch % 10 == 0:
-                print(f"Epoch {epoch}. Loss (Training, Test): ({current_loss_train:.6f}, {current_loss_test:.6f})")
+                print(
+                    f"Epoch {epoch}. Loss (Training, Test): ({current_loss_train:.6f}, {current_loss_test:.6f})"
+                )

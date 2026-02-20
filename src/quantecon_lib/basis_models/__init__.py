@@ -1,8 +1,4 @@
-from .splines import (
-    LinearSpline, 
-    CubicSpline, 
-    SmoothingSpline
-)
+from .splines import LinearSpline, CubicSpline, SmoothingSpline
 
 __all__ = [
     "LinearSpline",

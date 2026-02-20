@@ -1,13 +1,14 @@
 import numpy as np
 
+
 class BaseBasisModel:
     def __init__(self):
         self.beta = None
 
     def _validate_data(self, X, y=None):
         X = np.asarray(X)
-        if X.ndim == 1: # if 1D
-            X = X.reshape(-1, 1) # force to 2D
+        if X.ndim == 1:  # if 1D
+            X = X.reshape(-1, 1)  # force to 2D
         if y is not None:
             y = np.asarray(y)
         return X, y
@@ -15,7 +16,7 @@ class BaseBasisModel:
     def fit(self, X, y):
         X, y = self._validate_data(X, y)
         H = self._transform(X)
-        
+
         self.beta = np.linalg.pinv(H.T @ H) @ H.T @ y
         return self
 
@@ -26,4 +27,3 @@ class BaseBasisModel:
 
     def _transform(self, X):
         raise NotImplementedError("Subclasses must implement _transform")
-

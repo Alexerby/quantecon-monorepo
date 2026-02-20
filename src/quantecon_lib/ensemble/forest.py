@@ -6,9 +6,12 @@ import numpy as np
 from ._base import ParallelEnsemble
 from ..tree.decision_trees import DecisionTreeClassifier
 
+
 class RandomForestClassifier(ParallelEnsemble):
     def __init__(self, n_estimators=100, max_features="sqrt", max_depth=None):
-        super().__init__(n_estimators=n_estimators, max_depth=max_depth, max_features=max_features)
+        super().__init__(
+            n_estimators=n_estimators, max_depth=max_depth, max_features=max_features
+        )
 
     def fit(self, X, y):
 
@@ -26,7 +29,7 @@ class RandomForestClassifier(ParallelEnsemble):
         else:
             m = n_features
 
-        self.models = [] # Clear stored trees
+        self.models = []  # Clear stored trees
 
         for _ in range(self.n_estimators):
             # Bootstrap sampling (Bagging)
@@ -44,14 +47,14 @@ class RandomForestClassifier(ParallelEnsemble):
 
     def predict(self, X):
         X = np.asarray(X)
-        
+
         # Row contains predictions for individual tree
         tree_preds = np.array([tree.predict(X) for tree in self.models])
 
         final_preds = []
 
         # Find the majority vote for each sample across all trees
-        for i in range(tree_preds.shape[1]): 
+        for i in range(tree_preds.shape[1]):
             sample_votes = tree_preds[:, i]
             # Fixed the parenthesis bug: bincount first, then argmax
             most_frequent = np.bincount(sample_votes.astype(int)).argmax()

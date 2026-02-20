@@ -5,12 +5,10 @@ from quantecon_lib.nn.losses import Loss
 from .layers import Layer
 from typing import Type
 
+
 class BaseNeuralNetwork(ABC):
     def __init__(
-        self,
-        layers: list[Layer],
-        optimizer: Optimizer,
-        loss_function: Type[Loss]
+        self, layers: list[Layer], optimizer: Optimizer, loss_function: Type[Loss]
     ):
         self.layers = layers
         self.optimizer = optimizer

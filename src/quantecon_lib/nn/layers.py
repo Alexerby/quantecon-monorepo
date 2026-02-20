@@ -4,10 +4,10 @@ import numpy as np
 
 
 class Layer(ABC):
-    """Promise the rest of the network that any object which is called a Layer 
+    """Promise the rest of the network that any object which is called a Layer
     will have a forward() and backward() method.
     """
-    
+
     def __init__(self) -> None:
         self.input = None
         self.output = None
@@ -23,10 +23,9 @@ class Layer(ABC):
 
 class Dense(Layer):
     def __init__(self, in_dim, out_dim, init="he"):
-        scale = np.sqrt(2. / in_dim) if init == "he" else np.sqrt(1. / in_dim)
+        scale = np.sqrt(2.0 / in_dim) if init == "he" else np.sqrt(1.0 / in_dim)
         self.W = np.random.randn(in_dim, out_dim) * scale
         self.b = np.zeros((1, out_dim))
-
 
     def forward(self, X):
         """Returns the pre-activation Z = XW + b."""
@@ -34,19 +33,18 @@ class Dense(Layer):
         self.output_data = np.dot(self.X, self.W) + self.b
         return self.output_data
 
-
     def backward(self, output_gradient):
         """Perform the backward pass of backpropagation.
-        
+
         Args:
-            output_gradient: The gradient coming into this layer 
+            output_gradient: The gradient coming into this layer
             from the output direction.
-        
+
         Returns:
             type: np.ndarray.
         """
-        
-        # Weight gradient: 
+
+        # Weight gradient:
         # Dim_{in} x Dim_{out} = (Dim_{in} x Batch) x (Batch x Dim_{out}).
         # Multiplies each feature \vec{x} with its corresponding error
         # and sums over the batch.
@@ -59,4 +57,3 @@ class Dense(Layer):
         input_gradient = np.dot(output_gradient, self.W.T)
 
         return input_gradient
-

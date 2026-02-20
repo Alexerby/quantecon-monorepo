@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class BaseEnsemble:
     def __init__(self, n_estimators=100, max_depth=None, max_features=None):
         self.n_estimators = n_estimators
@@ -18,6 +19,7 @@ class BaseEnsemble:
     def _fit(self, X, y, **kwargs):
         # This acts as a safety net
         raise NotImplementedError("Subclasses must implement _fit")
+
 
 class ParallelEnsemble(BaseEnsemble):
     def __init__(self, n_estimators=100, max_depth=None, max_features=None):

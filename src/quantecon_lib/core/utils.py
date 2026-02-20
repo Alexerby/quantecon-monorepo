@@ -1,5 +1,6 @@
-import time 
+import time
 import functools
+
 
 def timer(func):
     @functools.wraps(func)
@@ -10,4 +11,5 @@ def timer(func):
         duration = end_time - start_time
         print(f"[{func.__name__}] execution time: {duration:.4f} seconds.")
         return result
+
     return wrapper
