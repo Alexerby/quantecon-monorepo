@@ -55,6 +55,6 @@ This repository contains from-scratch implementations of core machine learning a
 | :--- | :--- | :---: | :--- |
 | **k-means** | Centroid minimization | ⬜ | |
 | **Hierarchical** | Linkage types (Ward/Complete) | ⬜ | |
-| **PCA** | Eigenvalues / Variance Maximization | ⬜ | |
+| **PCA** | Eigenvalues / Variance Maximization | ✅ | `dim_reduction/pca.py`|
 | **t-SNE** | KL-Divergence / Manifold mapping | ⬜ | |
 | **Autoencoders** | Bottleneck Reconstruction Loss | ✅ | `nn/models/feed_forward.py` |
